@@ -1,0 +1,85 @@
+@use "./_reset.scss";
+
+@import "bootstrap/dist/css/bootstrap-grid.min.css";
+
+@font-face {
+  font-family: "Anaheim";
+  font-weight: 400;
+  src: url("../assets/fonts/Anaheim-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Krona One";
+  font-weight: 400;
+  src: url("../assets/fonts/KronaOne-Regular.ttf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #010101;
+  font-family: "Anaheim";
+  line-height: 1.2;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Krona One";
+  line-height: 1;
+}
+
+.container {
+  max-width: 100% !important;
+  padding: 0 64px !important;
+}
+
+.margin-b-64 {
+  margin: 0 0 64px;
+}
+
+.margin-b-48 {
+  margin: 0 0 48px;
+}
+
+.margin-b-32 {
+  margin: 0 0 32px;
+}
+
+.margin-b-24 {
+  margin: 0 0 24px;
+}
+
+.margin-b-16 {
+  margin: 0 0 16px;
+}
+
+.fs-64 {
+  font-size: 64px;
+}
+
+.fs-48 {
+  font-size: 48px;
+}
+
+.fs-96 {
+  font-size: 96px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.p-128 {
+  padding: 128px 0;
+}

@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: `omnisar-landing`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: ["gatsby-plugin-sass"]
+  plugins: ["gatsby-plugin-sass", "gatsby-plugin-root-import"],
 };

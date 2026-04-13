@@ -1,0 +1,30 @@
+import "./styles.scss";
+import React from "react";
+import { Scene } from "./components";
+
+const Hero = () => {
+  return (
+    <section className="hero">
+      <div className="container">
+        <div className="hero__content">
+          <p className="hero__eyebrow margin-b-16 fs-18">Ogólnokrajowe monitorowanie wykopalisk</p>
+
+          <h1 className="hero__title fs-64 margin-b-32">
+            Omni<span className="hero__title-accent">SAR</span>
+          </h1>
+          <p className="hero__subtitle margin-b-24 fs-18">Portal do ogólnokrajowego monitorowania wykopalisk przy użyciu optycznych danych satelitarnych i SAR.</p>
+
+          <div className="hero__badges">
+            <span className="hero__badge">Radarowa detekcja zmian</span>
+            <span className="hero__badge">Walidacja optyczna</span>
+            <span className="hero__badge">Ogólnokrajowe pokrycie</span>
+          </div>
+        </div>
+      </div>
+
+      <Scene />
+    </section>
+  );
+};
+
+export default Hero;
