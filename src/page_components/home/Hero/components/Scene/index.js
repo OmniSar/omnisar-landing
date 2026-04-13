@@ -16,16 +16,19 @@ const vertexShader = `
   uniform float uThreshold;
 
   attribute float aElevation;
-  attribute float aPhase;
 
   float vOpacity;
   varying vec4 vColor;
+
+  float hash(vec3 p) {
+    return fract(sin(dot(p, vec3(12.9898, 78.233, 45.164))) * 43758.5453);
+  }
 
   void main() {
     float growth = 0.0;
     vOpacity = 0.12;
 
-    float t = fract(uTime * uSpeed + aPhase);
+    float t = fract(uTime * uSpeed + hash(position));
     
     if (aElevation > uThreshold) {
       growth = aElevation * t;
@@ -108,24 +111,20 @@ const Earth = ({ buffer }) => {
     []
   );
 
-  const { positions, elevations, phases } = useMemo(() => {
-    const rawData = buffer;
-    const numPoints = rawData.length / 4;
-
-    const posArray = new Float32Array(numPoints * 3);
-    const elevArray = new Float32Array(numPoints);
-    const phaseArray = new Float32Array(numPoints);
-
-    for (let i = 0; i < numPoints; i++) {
-      posArray[i * 3 + 0] = rawData[i * 4 + 0];
-      posArray[i * 3 + 1] = rawData[i * 4 + 1];
-      posArray[i * 3 + 2] = rawData[i * 4 + 2];
-      elevArray[i] = rawData[i * 4 + 3];
-      phaseArray[i] = Math.random();
-    }
-
-    return { positions: posArray, elevations: elevArray, phases: phaseArray };
+  const pointsGeometry = useMemo(() => {
+    // Reuse interleaved binary data directly to avoid per-point JS copies.
+    const geometry = new THREE.BufferGeometry();
+    const interleaved = new THREE.InterleavedBuffer(buffer, 4);
+    geometry.setAttribute("position", new THREE.InterleavedBufferAttribute(interleaved, 3, 0));
+    geometry.setAttribute("aElevation", new THREE.InterleavedBufferAttribute(interleaved, 1, 3));
+    return geometry;
   }, [buffer]);
+
+  useEffect(() => {
+    return () => {
+      pointsGeometry.dispose();
+    };
+  }, [pointsGeometry]);
 
   useFrame(({ clock }, delta) => {
     const mat = materialRef.current;
@@ -144,12 +143,7 @@ const Earth = ({ buffer }) => {
         <meshStandardMaterial color="#05060c" metalness={0.92} roughness={0.88} emissive="#000000" emissiveIntensity={0.01} />
       </Sphere>
 
-      <points>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-          <bufferAttribute attach="attributes-aElevation" args={[elevations, 1]} />
-          <bufferAttribute attach="attributes-aPhase" args={[phases, 1]} />
-        </bufferGeometry>
+      <points geometry={pointsGeometry}>
 
         <shaderMaterial
           ref={materialRef}
