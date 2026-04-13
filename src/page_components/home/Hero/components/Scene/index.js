@@ -1,6 +1,5 @@
-"use client";
-import "./styles.scss";
 import React from "react";
+import "./styles.scss";
 import { useState, useEffect, useRef, useMemo } from "react";
 
 import { motion } from "framer-motion";
@@ -64,8 +63,9 @@ export default function Scene() {
   const [buffer, setBuffer] = useState(null);
 
   useEffect(() => {
-    new THREE.FileLoader().setResponseType("arraybuffer").load("/land_points.bin", (buffer) => {
-      setBuffer(new Float32Array(buffer));
+    const loader = new THREE.FileLoader().setResponseType("arraybuffer");
+    loader.load("/land_points.bin", (rawBuffer) => {
+      setBuffer(new Float32Array(rawBuffer));
     });
   }, []);
 
@@ -75,11 +75,11 @@ export default function Scene() {
     <motion.div className="home-scene" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, ease: "easeInOut" }}>
       <Canvas
         camera={{ position: [1.55, 1.2, 1.55], fov: 100, near: 0.5, far: 20 }}
-        shadows
+        dpr={[1, 1.5]}
         gl={{
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.05,
-          antialias: true,
+          antialias: false,
           powerPreference: "high-performance",
         }}
       >
@@ -89,7 +89,7 @@ export default function Scene() {
         <Earth buffer={buffer} />
 
         <EffectComposer multisampling={0}>
-          <Bloom luminanceThreshold={0.42} luminanceSmoothing={0.55} intensity={0.75} mipmapBlur />
+          <Bloom luminanceThreshold={0.42} luminanceSmoothing={0.55} intensity={0.75} />
         </EffectComposer>
       </Canvas>
     </motion.div>
@@ -97,11 +97,19 @@ export default function Scene() {
 }
 
 const Earth = ({ buffer }) => {
-  const materialRef = useRef(THREE.ShaderMaterial > null);
+  const materialRef = useRef(null);
   const globeRef = useRef(null);
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uSpeed: { value: 0.04 },
+      uThreshold: { value: 0.000001 },
+    }),
+    []
+  );
 
   const { positions, elevations, phases } = useMemo(() => {
-    const rawData = new Float32Array(buffer);
+    const rawData = buffer;
     const numPoints = rawData.length / 4;
 
     const posArray = new Float32Array(numPoints * 3);
@@ -132,7 +140,7 @@ const Earth = ({ buffer }) => {
 
   return (
     <group ref={globeRef} position={[0.85, 0, 0]} rotation={[THREE.MathUtils.degToRad(23.5), 0, 0]} scale={0.9}>
-      <Sphere args={[1.0, 64, 64]} position={[0, 0, 0]} receiveShadow castShadow>
+      <Sphere args={[1.0, 32, 32]} position={[0, 0, 0]}>
         <meshStandardMaterial color="#05060c" metalness={0.92} roughness={0.88} emissive="#000000" emissiveIntensity={0.01} />
       </Sphere>
 
@@ -147,11 +155,7 @@ const Earth = ({ buffer }) => {
           ref={materialRef}
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
-          uniforms={{
-            uTime: { value: 0 },
-            uSpeed: { value: 0.04 },
-            uThreshold: { value: 0.000001 },
-          }}
+          uniforms={uniforms}
           transparent={true}
           depthWrite={false}
           blending={THREE.NormalBlending}
