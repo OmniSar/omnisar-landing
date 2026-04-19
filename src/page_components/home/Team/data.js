@@ -1,29 +1,29 @@
 export const TEAM = [
-    {
-      name: "Jakub Klimek",
-      role: "Project lead & Imagery Analysis",
-      description:
-        "Kieruje realizacją projektu: planuje i nadzoruje harmonogram prac, rozdziela zadania oraz współpracuje z zespołem przy ustalaniu zakresu dostaw. Odpowiada za analizę i ocenę danych obrazowych, w tym za weryfikację jakości materiałów wejściowych, spójność etapów przetwarzania oraz poprawność wyników pośrednich i końcowych. Uczestniczy w opracowywaniu wymagań funkcjonalnych i niefunkcjonalnych oraz doprecyzowuje zapisy w dokumentacji projektowej.",
-      imageSrc: "/jakub.jpg",
-      linkedin: "https://www.linkedin.com/in/jakub-klimek-b643071b1",
-      email: "jakub.klimek@example.com",
-    },
-    {
-      name: "Michał Proć",
-      role: "DevOps & Backend developer",
-      description:
-        "Zajmuje się przygotowaniem, konfiguracją i utrzymaniem środowisk developerskich, testowych i produkcyjnych oraz automatyzacją procesów budowania i wdrażania oprogramowania. Nadzoruje monitoring, rejestrowanie zdarzeń i obsługę incydentów eksploatacyjnych związanych z infrastrukturą. Rozwija i utrzymuje warstwę serwerową aplikacji: interfejsy programistyczne (API), logikę biznesową po stronie serwera oraz integracje z zewnętrznymi systemami; dba o wydajność, dostępność usług i zgodność wdrożeń z przyjętymi standardami bezpieczeństwa.",
-      imageSrc: "/michal.jpg",
-      linkedin: "https://www.linkedin.com/in/michal-proc",
-      email: "michal.proc@example.com",
-    },
-    {
-      name: "Bartłomiej Woźniczka",
-      role: "Fullstack Developer & UI Lead",
-      description:
-        "Odpowiada za projektowanie oraz implementację interfejsu użytkownika: układ ekranów, typografię, stany interakcji, responsywność oraz spójność wizualną produktu. Nadzoruje jakość warstwy prezentacji z punktu widzenia użyteczności i dostępności. Realizuje zadania programistyczne w modelu fullstack: rozwój logiki po stronie klienta i serwera, integracja z API oraz utrzymanie kodu zgodnie z przyjętymi w projekcie konwencjami. Współpracuje przy optymalizacji czasu ładowania i renderowania widoków oraz przy porządkowaniu biblioteki komponentów współdzielonych przez zespół.",
-      imageSrc: "/bartus.png",
-      linkedin: "https://www.linkedin.com/in/bwozniczka",
-      email: "bartlomiej.wozniczka@example.com",
-    },
-  ];
+  {
+    name: "Jakub Klimek",
+    role: "Project lead & Imagery Analysis",
+    description:
+      "Kieruje realizacją projektu: planuje harmonogram, rozdziela zadania i współpracuje przy ustalaniu zakresu dostaw; odpowiada za analizę danych obrazowych oraz za serwisy wspierające analizę i akwizycję. Współtworzy warstwę backendową powiązaną z przetwarzaniem danych, etapami przetwarzania analitycznego i spójnością serwisów od pozyskania materiału po wyniki dla użytkownika.",
+    imageSrc: "/jakub.jpg",
+    linkedin: "https://www.linkedin.com/in/jakub-klimek-b643071b1",
+    email: "jakub.klimek@example.com",
+  },
+  {
+    name: "Michał Proć",
+    role: "DevOps & Backend developer",
+    description:
+      "Zajmuje się DevOps: projektuje i utrzymuje środowiska deweloperskie, testowe i produkcyjne, automatyzuje budowanie oraz wdrożenia i dba o monitoring oraz stabilność infrastruktury. Równolegle rozwija backend aplikacji - projektuje i utrzymuje API, logikę biznesową po stronie serwera oraz integracje z zewnętrznymi systemami, ze szczególnym naciskiem na wydajność i bezpieczeństwo.",
+    imageSrc: "/michal.jpg",
+    linkedin: "https://www.linkedin.com/in/michal-proc",
+    email: "michal.proc@example.com",
+  },
+  {
+    name: "Bartłomiej Woźniczka",
+    role: "Frontend Developer & UI Lead",
+    description:
+      "Projektuje i wdraża warstwę prezentacji: architekturę widoków, typografię, stany interakcji, responsywność oraz spójność wizualną produktu, z naciskiem na ergonomię i dostępność. Integruje frontend z API dostarczanymi przez zespół backendowy, optymalizuje czas ładowania i renderowania oraz utrzymuje bibliotekę komponentów współdzielonych w projekcie.",
+    imageSrc: "/bartus.png",
+    linkedin: "https://www.linkedin.com/in/bwozniczka",
+    email: "bartlomiej.wozniczka@example.com",
+  },
+];
