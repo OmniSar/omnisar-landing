@@ -66,7 +66,7 @@ const Header = () => {
   const close = () => setOpen(false);
 
   return (
-    <header className={clsx("site-header", isScrolled && "site-header--is-scrolled")}>
+    <header className={clsx("site-header", (isScrolled || open) && "site-header--is-scrolled")}>
       <div className="container">
         <div className="site-header__bar">
           <a className="site-header__brand" href="/" onClick={close}>
