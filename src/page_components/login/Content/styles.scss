@@ -1,0 +1,12 @@
+.login-unavailable-content {
+  color: #fff;
+  text-align: center;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: calc(100vh - 137px);
+  }
+}

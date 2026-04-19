@@ -17,4 +17,4 @@ const Home = () => {
 
 export default Home;
 
-export const Head = () => <Seo />
+export const Head = () => <Seo title="Strona główna" />;
