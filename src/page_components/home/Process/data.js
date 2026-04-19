@@ -1,7 +1,7 @@
 export const PROCESS_STEPS = [
   {
     title: "Przekazanie AOI",
-    description: "Wskazuje obszarów zainteresowania (AOI), które mają być objęte monitorowaniem.",
+    description: "Wskazanie obszarów zainteresowania (AOI), które mają być objęte monitorowaniem.",
   },
   {
     title: "Rozpoczęcie obserwacji",
