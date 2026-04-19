@@ -1,0 +1,168 @@
+@use "scss/variables" as variables;
+
+.site-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 50;
+  background-color: transparent;
+  transition: 0.15s linear all;
+
+  &--is-scrolled {
+    background: rgba(1, 1, 1, 0.5);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(variables.$green, 0.25);
+  }
+
+  &__bar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 72px;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-family: "Krona One", sans-serif;
+    font-size: 1.125rem;
+    letter-spacing: 0.02em;
+
+    &:hover {
+      .site-header__brand-accent {
+        color: variables.$green;
+      }
+
+      .diamond-mark path {
+        stroke: variables.$green;
+      }
+    }
+  }
+
+  &__brand-accent {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(variables.$green, 0.9));
+    background-clip: text;
+    color: transparent;
+    transition: color 0.15s linear;
+  }
+
+  &__nav {
+    display: none;
+    align-items: center;
+    gap: 28px;
+
+    @media (min-width: 992px) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+    font-size: 1.125rem;
+    transition: color 0.15s linear;
+
+    &:hover {
+      color: variables.$green;
+    }
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+    transition:
+      background 0.15s linear,
+      border-color 0.15s linear;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(140, 255, 210, 0.35);
+      color: variables.$green;
+    }
+
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  &__drawer {
+    position: relative;
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid transparent;
+
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  &__drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 0 20px;
+  }
+
+  &__drawer-link {
+    padding: 12px 0;
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    font-size: 1.25rem;
+
+    &:hover {
+      color: variables.$green;
+    }
+  }
+
+  &__drawer-cta-slot {
+    margin-top: 8px;
+    align-self: flex-start;
+    padding: 0.65rem 1.15rem;
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    height: 100vh;
+    width: 100vw;
+
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

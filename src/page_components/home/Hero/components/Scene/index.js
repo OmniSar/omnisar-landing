@@ -77,7 +77,7 @@ export default function Scene() {
   return (
     <motion.div className="home-scene" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, ease: "easeInOut" }}>
       <Canvas
-        camera={{ position: [1.55, 1.2, 1.55], fov: 100, near: 0.5, far: 20 }}
+        camera={{ position: [1.55, 1.2, 1.55], fov: 100, near: 0.5, far: 60 }}
         dpr={[1, 1.5]}
         gl={{
           toneMapping: THREE.ACESFilmicToneMapping,
@@ -87,12 +87,12 @@ export default function Scene() {
         }}
       >
         <color attach="background" args={["#040404"]} />
-        <ambientLight color="#1a2030" intensity={0.08} />
+        <ambientLight color="#1a2030" intensity={0.2} />
 
         <Earth buffer={buffer} />
 
         <EffectComposer multisampling={0}>
-          <Bloom luminanceThreshold={0.42} luminanceSmoothing={0.55} intensity={0.75} />
+          <Bloom luminanceThreshold={0.42} luminanceSmoothing={0.55} intensity={0.95} />
         </EffectComposer>
       </Canvas>
     </motion.div>
@@ -108,11 +108,10 @@ const Earth = ({ buffer }) => {
       uSpeed: { value: 0.04 },
       uThreshold: { value: 0.000001 },
     }),
-    []
+    [],
   );
 
   const pointsGeometry = useMemo(() => {
-    // Reuse interleaved binary data directly to avoid per-point JS copies.
     const geometry = new THREE.BufferGeometry();
     const interleaved = new THREE.InterleavedBuffer(buffer, 4);
     geometry.setAttribute("position", new THREE.InterleavedBufferAttribute(interleaved, 3, 0));
@@ -144,7 +143,6 @@ const Earth = ({ buffer }) => {
       </Sphere>
 
       <points geometry={pointsGeometry}>
-
         <shaderMaterial
           ref={materialRef}
           vertexShader={vertexShader}

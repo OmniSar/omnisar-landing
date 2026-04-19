@@ -1,0 +1,50 @@
+@use "scss/variables" as variables;
+
+.btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: inherit;
+  line-height: 1.2;
+  transition:
+    filter 0.15s linear,
+    transform 0.15s linear,
+    color 0.15s linear,
+    border-color 0.15s linear,
+    background-color 0.15s linear;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+  }
+
+  &--primary {
+    color: #010101;
+    background: variables.$green;
+    border-color: rgba(variables.$green, 0.35);
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--outline {
+    color: #fff;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.85);
+
+    &:hover:not(:disabled) {
+      border-color: variables.$green;
+      color: variables.$green;
+      transform: translateY(-1px);
+    }
+  }
+}

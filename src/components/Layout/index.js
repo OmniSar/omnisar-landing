@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import "scss/app.scss";
 
+import Footer from "./Footer";
+import Header from "./Header";
+
 const Layout = ({ children }) => {
   useEffect(() => {
     let rafId = null;
@@ -34,7 +37,13 @@ const Layout = ({ children }) => {
     };
   }, []);
 
-  return <main>{children}</main>;
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
 };
 
 export default Layout;
