@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Button from "components/Button";
 
-const LOGIN_HREF = "https://omnisar-app.netlify.app/";
+const LOGIN_HREF = "https://omnisar-app.netlify.app/map";
 
 const items = [
   {
