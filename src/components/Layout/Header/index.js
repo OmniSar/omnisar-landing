@@ -5,18 +5,17 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import Button from "components/Button";
-import DiamondMark from "components/DiamondMark";
 
-const LOGIN_HREF = "/login";
+const LOGIN_HREF = "https://omnisar-app.netlify.app/";
 
 const items = [
   {
     label: "Proces",
-    href: "#proces",
+    href: "/#proces",
   },
   {
     label: "Zespół",
-    href: "#zespol",
+    href: "/#zespol",
   },
   {
     label: "Przejdź do aplikacji",
