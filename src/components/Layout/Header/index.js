@@ -3,10 +3,9 @@ import React, { useEffect, useId, useState } from "react";
 import clsx from "clsx";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "gatsby";
 
 import Button from "components/Button";
-
-const LOGIN_HREF = "https://omnisar-app.netlify.app/map";
 
 const items = [
   {
@@ -19,7 +18,7 @@ const items = [
   },
   {
     label: "Przejdź do aplikacji",
-    href: LOGIN_HREF,
+    href: "/login",
     isCta: true,
   },
 ];
@@ -77,13 +76,13 @@ const Header = () => {
           <nav className="site-header__nav" aria-label="Główna nawigacja">
             {items?.map((i, ix) =>
               i?.isCta ? (
-                <Button key={ix} href={i.href} variant="primary">
+                <Link key={ix} to={i.href} className="btn btn--primary">
                   {i.label}
-                </Button>
+                </Link>
               ) : (
-                <a key={ix} className="site-header__link" href={i?.href}>
+                <Link key={ix} className="site-header__link" to={i?.href}>
                   {i?.label}
-                </a>
+                </Link>
               ),
             )}
           </nav>
